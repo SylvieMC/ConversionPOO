@@ -2,16 +2,18 @@
 
 namespace Conversion;
 
-class Panier implements IPanier
-{
+class PanierSoldes implements IPanier {
+
 
 	private $produits;
 	private $totalConverti;
 	private $devisePanier;
+	private $reduction;
 
-	public function __construct($devisePanier)
+	public function __construct($devisePanier,$reduction)
 	{
 		$this->devisePanier = $devisePanier;
+		$this->reduction = $reduction;
 	}
 
 	public function getProduits()
@@ -21,6 +23,10 @@ class Panier implements IPanier
 	public function getDevisePanier()
     {
         return $this->devisePanier;
+	}
+	public function getReduction()
+    {
+        return $this->reduction;
     }
 
     public function addProduit(Produit $produit)
@@ -59,23 +65,7 @@ class Panier implements IPanier
     public function supprimerProduit(Produit $produit)
     {
 
-    	if(count($this->produits) == 0)
-		{
-			echo "Votre panier est vide";
-		}
-		else
-		{
-	    	$produitExiste = $this->getIndexOfProduit($produit);
-	    	if($produitExiste == -1)
-	    	{
-	    		echo "Ce produit n'est pas dans votre panier<br/>";
-	    	}
-	    	else
-	    	{
-	    		echo "Produit retiré du panier<br/>";
-	    		unset($this->produits[$produitExiste]);
-	    	}
-    	}
+    
 
     }
 
@@ -116,7 +106,7 @@ class Panier implements IPanier
 
     }
 
-    private function getIndexOfProduit(Produit $produit)
+    public function getIndexOfProduit(Produit $produit)
     {
     	foreach ($this->produits as $index => $unProduit) 
     	{
@@ -134,6 +124,8 @@ class Panier implements IPanier
 
     public function totalConverti()
     {
+		$reduction = 50;
+
         $this->totalConverti = 0;
 
         foreach ($this->produits as $index => $produit) 
@@ -143,14 +135,12 @@ class Panier implements IPanier
                 $devise =  json_decode(file_get_contents('https://api.exchangeratesapi.io/latest?base=' . $produit->getDevise() . '&symbols='. $this->devisePanier.''), true);
                 $devisepanier = $devise['rates'][$this->devisePanier];
                 $tarifs = $devisepanier * $produit->getPrix();
-                $this->totalConverti = $this->totalConverti + ($produit->getQuantite())*($tarifs);
+                $this->totalConverti = ((-$this->reduction/100) + 1) * ($this->totalConverti + ($produit->getQuantite())*($tarifs));
             }
             else {
                 $this->totalConverti = $this->totalConverti + ($produit->getQuantite())*($produit->getPrix());
             }
         }
         return $this->totalConverti;
-    }
-
-
+	}
 }

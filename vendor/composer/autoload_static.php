@@ -21,7 +21,10 @@ class ComposerStaticInit496bd97ba7415f31790280c60c5ef06f
     );
 
     public static $classMap = array (
+        'Conversion\\FairePanier' => __DIR__ . '/../..' . '/src/FairePanier.php',
+        'Conversion\\IPanier' => __DIR__ . '/../..' . '/src/IPanier.php',
         'Conversion\\Panier' => __DIR__ . '/../..' . '/src/Panier.php',
+        'Conversion\\PanierSoldes' => __DIR__ . '/../..' . '/src/PanierSoldes.php',
         'Conversion\\Produit' => __DIR__ . '/../..' . '/src/Produit.php',
     );
 
