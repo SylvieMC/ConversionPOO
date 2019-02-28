@@ -6,4 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Conversion\\Panier' => $baseDir . '/src/Panier.php',
+    'Conversion\\Produit' => $baseDir . '/src/Produit.php',
 );

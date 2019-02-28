@@ -6,9 +6,31 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit496bd97ba7415f31790280c60c5ef06f
 {
+    public static $prefixLengthsPsr4 = array (
+        'C' => 
+        array (
+            'Conversion\\' => 11,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Conversion\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
+    );
+
+    public static $classMap = array (
+        'Conversion\\Panier' => __DIR__ . '/../..' . '/src/Panier.php',
+        'Conversion\\Produit' => __DIR__ . '/../..' . '/src/Produit.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit496bd97ba7415f31790280c60c5ef06f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit496bd97ba7415f31790280c60c5ef06f::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit496bd97ba7415f31790280c60c5ef06f::$classMap;
 
         }, null, ClassLoader::class);
     }
