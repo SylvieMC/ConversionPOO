@@ -25,7 +25,7 @@ class Panier
 
     public function addProduit(Produit $produit)
     {
-			$this->produits[] = $produit;
+	$this->produits[] = $produit;
     }
 
     public function increaseQuantite(Produit $produit,$quantite)
@@ -116,7 +116,7 @@ class Panier
 
     }
 
-    public function getIndexOfProduit(Produit $produit)
+    private function getIndexOfProduit(Produit $produit)
     {
     	foreach ($this->produits as $index => $unProduit) 
     	{
