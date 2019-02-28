@@ -20,8 +20,7 @@ print_r($panier);
 echo '</pre>';
 
 $total = $panier->totalConverti();
-echo '------------------------<br/>';
-echo $total;
-echo '<br/>------------------------';
+$devise = $panier->getDevisePanier();
+echo 'Total : '.$total.' '.$devise;
 
 ?>

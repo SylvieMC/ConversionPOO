@@ -17,6 +17,10 @@ class Panier
 	public function getProduits()
     {
         return $this->produits;
+	}
+	public function getDevisePanier()
+    {
+        return $this->devisePanier;
     }
 
     public function addProduit(Produit $produit)
@@ -52,7 +56,7 @@ class Panier
     	}
     }
 
-    public function removeProduit(Produit $produit)
+    public function supprimerProduit(Produit $produit)
     {
 
     	if(count($this->produits) == 0)
@@ -75,7 +79,7 @@ class Panier
 
     }
 
-    public function decreaseQuantite(Produit $produit,$quantite)
+    public function diminuerQuantite(Produit $produit,$quantite)
     {
 
     	if(count($this->produits) == 0)
@@ -99,7 +103,7 @@ class Panier
 	    		{
 	    			if($produits[$produitExiste]->getQuantite() <= $quantite)
 	    			{
-	    				$this->removeProduit($produit);
+	    				$this->supprimerProduit($produit);
 	    			}
 	    			else
 	    			{
