@@ -20,4 +20,7 @@ class FairePanier {
     public function totalConverti() {
         return $this->ipanier->totalConverti();
     }
+    public function getDevisePanier() {
+        return $this->ipanier->getDevisePanier();
+    }
 }

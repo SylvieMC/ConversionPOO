@@ -124,7 +124,6 @@ class PanierSoldes implements IPanier {
 
     public function totalConverti()
     {
-		$reduction = 50;
 
         $this->totalConverti = 0;
 
@@ -135,10 +134,10 @@ class PanierSoldes implements IPanier {
                 $devise =  json_decode(file_get_contents('https://api.exchangeratesapi.io/latest?base=' . $produit->getDevise() . '&symbols='. $this->devisePanier.''), true);
                 $devisepanier = $devise['rates'][$this->devisePanier];
                 $tarifs = $devisepanier * $produit->getPrix();
-                $this->totalConverti = ((-$this->reduction/100) + 1) * ($this->totalConverti + ($produit->getQuantite())*($tarifs));
+                $this->totalConverti = ($this->totalConverti + ($produit->getQuantite())*($tarifs))* (1 - $this->reduction/100);
             }
             else {
-                $this->totalConverti = $this->totalConverti + ($produit->getQuantite())*($produit->getPrix());
+                $this->totalConverti = ($this->totalConverti + ($produit->getQuantite())*($produit->getPrix()))* (1 - $this->reduction/100);
             }
         }
         return $this->totalConverti;

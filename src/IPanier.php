@@ -9,6 +9,5 @@ interface IPanier{
     public function increaseQuantite(Produit $produit,$quantite);
     public function supprimerProduit(Produit $produit);
     public function diminuerQuantite(Produit $produit,$quantite);
-    public function getIndexOfProduit(Produit $produit);
     public function totalConverti();
 }

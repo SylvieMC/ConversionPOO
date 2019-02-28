@@ -28,13 +28,14 @@ echo '</pre>';
 
 $total = $panier->totalConverti();
 $devise = $panier->getDevisePanier();
-echo 'Total : '.$total.' '.$devise;
+
+echo 'Total initial : '.$total.' '.$devise;
 
   $i = new FairePanier($panierSpe);
 
 
   echo "<br/>";
 
-  echo $i->totalConverti();
+  echo 'Total réduction : '.$i->totalConverti().' '.$i->getDevisePanier();
 
 ?>
