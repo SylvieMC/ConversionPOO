@@ -34,9 +34,11 @@ class Produit
 		return $this->prix;
 	}
 
-	public function getDevise(){
+	public function getDevise()
+	{
 		return $this->devise;
 	}
+
 	public function setNom($nouveauNom) 
 	{
 		$this->nom = $nouveauNom;
